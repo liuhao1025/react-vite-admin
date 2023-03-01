@@ -1,0 +1,42 @@
+:root {
+  --header-height: 64px;
+  --sider-width: 260px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+.LayoutRow {
+  flex-direction: row;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);
+  background-color: rgba(0, 0, 0, 0.65);
+  color: #fff;
+}
+
+.sider {
+  height: 100%;
+  width: var(--sider-width);
+  background-color: #fff;
+}
+
+.container {
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+}

@@ -1,3 +1,3 @@
-export function List() {
+export default function List() {
   return <>List</>;
 }

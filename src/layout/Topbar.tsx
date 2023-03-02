@@ -2,7 +2,6 @@ import {
   AppBar,
   Toolbar,
   IconButton,
-  Typography,
   Button,
   Menu,
   MenuItem,
@@ -11,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import UserIcon from "@mui/icons-material/AccountCircle";
 import { useAuth } from "../auth/AuthHook";
 import { useState } from "react";
+import { routes, MenuView } from '/@/routes/index';
 export default function Topbar() {
   const auth = useAuth();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -37,9 +37,7 @@ export default function Topbar() {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          News
-        </Typography>
+        <MenuView routes={routes} />
 
         {auth && auth.user ? (
           <>

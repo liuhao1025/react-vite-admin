@@ -5,6 +5,7 @@ import {
   Button,
   Menu,
   MenuItem,
+  Typography
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import UserIcon from "@mui/icons-material/AccountCircle";
@@ -37,8 +38,7 @@ export default function Topbar() {
         >
           <MenuIcon />
         </IconButton>
-        <MenuView routes={routes} />
-
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>Title</Typography>
         {auth && auth.user ? (
           <>
             <IconButton

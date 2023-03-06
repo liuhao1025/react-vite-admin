@@ -1,5 +1,6 @@
 import { Grid, Card } from "@mui/material";
 import LineChart from '/@/components/LineChart'
+import BarChart from '/@/components/BarChart'
 
 export default function Home() {
   const MockData = [
@@ -37,6 +38,7 @@ export default function Home() {
     },
   ];
   return <Grid container columns={16} rowSpacing={1} columnSpacing={1}>
-    <LineChart data={MockData} />
+    {/* <LineChart data={MockData} /> */}
+    <BarChart data={MockData.map(i => i.value)} />
   </Grid>;
 }

@@ -7,7 +7,13 @@ function drawLegend() { }
 function drawCanvas() { }
 function BarChartFc(container: HTMLElement, data: any[], option?: any): void {
   const width = 320;
-  const height = 320;
+  const height = 240;
+  const barWidth = 10;
+  const barCap = 10;
+  const marginTop = 20;
+  const marginBottom = 20;
+  const marginLeft = 20;
+  const marginRight = 20;
   const svg = d3.select(container)
     .append("svg")
     .attr("width", width)
@@ -15,17 +21,28 @@ function BarChartFc(container: HTMLElement, data: any[], option?: any): void {
     .attr("viewport", [0, 0, width, height])
     .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
 
+  const yDomain = [0, d3.max(data)];
+  const yRange = [height - marginBottom, marginTop]
+  const yScale = d3.scaleLinear(yDomain, yRange)
+
+  const xDomain = new d3.InternSet(data.map((_, i) => i));
+  const xRange = [marginLeft, width - marginRight];
+  const xScale = d3.scaleBand(xDomain, xRange).padding(0.9);
   // 坐标轴
+  svg.append("g")
+    .attr("transform", `translate(0, ${height - marginBottom})`)
+    .call(d3.axisBottom(xScale))
+
   // 柱状图
   svg.append("g")
     .attr("fill", "#d31027")
     .selectAll("rect")
     .data(data)
     .join("rect")
-    .attr("width", 10)
-    .attr("height", i => 320 - data[i] * 10)
-    .attr("x", i => i * 20)
-    .attr("y", i => data[i] * 10)
+    .attr("width", xScale.bandwidth())
+    .attr("height", d => yScale(0) - yScale(d))
+    .attr("x", (_, i) => xScale(i)!)
+    .attr("y", d => yScale(d))
 
 }
 

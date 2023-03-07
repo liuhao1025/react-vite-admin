@@ -34,7 +34,7 @@ export default function Home() {
     },
     {
       name: '2022-01-08',
-      value: 4
+      value: 8
     },
   ];
   return <Grid container columns={16} rowSpacing={1} columnSpacing={1}>

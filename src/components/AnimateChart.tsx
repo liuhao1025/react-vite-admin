@@ -3,9 +3,11 @@ import { useEffect, useRef } from "react";
 function BarChartFc(container: HTMLElement, data: any[], option?: any): void {
   const width = 320;
   const height = 240;
+  const barWidth = 10;
+  const barCap = 10;
   const marginTop = 20;
   const marginBottom = 20;
-  const marginLeft = 40;
+  const marginLeft = 20;
   const marginRight = 20;
   const svg = d3.select(container)
     .append("svg")
@@ -26,12 +28,8 @@ function BarChartFc(container: HTMLElement, data: any[], option?: any): void {
     .attr("transform", `translate(0, ${height - marginBottom})`)
     .call(d3.axisBottom(xScale))
 
-  svg.append("g")
-    .attr("transform", `translate(${marginLeft}, 0)`)
-    .call(d3.axisLeft(yScale))
-
   // 柱状图
-  const bar = svg.append("g")
+  svg.append("g")
     .attr("fill", "#d31027")
     .selectAll("rect")
     .data(data)
@@ -40,6 +38,7 @@ function BarChartFc(container: HTMLElement, data: any[], option?: any): void {
     .attr("height", d => yScale(0) - yScale(d))
     .attr("x", (_, i) => xScale(i)!)
     .attr("y", d => yScale(d))
+
 }
 
 export default function BarChart({ data }: { data: number[] }) {
